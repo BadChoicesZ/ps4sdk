@@ -483,7 +483,10 @@ SYSCTL_ALLOWED_TYPES(UINT64, uint64_t *a; unsigned long long *b; );
 #define	KERN_IOV_MAX		35	/* int: value of UIO_MAXIOV */
 #define	KERN_HOSTUUID		36	/* string: host UUID identifier */
 #define	KERN_ARND		37	/* int: from arc4rand() */
-#define	KERN_MAXID		38	/* number of valid kern ids */
+//#define	KERN_MAXID		38	/* number of valid kern ids - Must be something else.. */
+#define SDK_VERSION             38	/* char[4]: firmware version */
+#define DEVNAME                 355     /* untested */
+#define INIT_SAFE_MODE          419     /* untested */
 
 #define CTL_KERN_NAMES { \
 	{ 0, 0 }, \
@@ -523,6 +526,9 @@ SYSCTL_ALLOWED_TYPES(UINT64, uint64_t *a; unsigned long long *b; );
 	{ "iov_max", CTLTYPE_INT }, \
 	{ "hostuuid", CTLTYPE_STRING }, \
 	{ "arc4rand", CTLTYPE_OPAQUE }, \
+	{ "sdk_version", CTLTYPE_UINT }, \
+	{ "devname", CTLTYPE_STRING }, \
+	{ "init_safe_mode", CTLTYPE_BOOL }, \
 }
 
 /*
@@ -652,6 +658,48 @@ SYSCTL_ALLOWED_TYPES(UINT64, uint64_t *a; unsigned long long *b; );
 	{ "stream_max", CTLTYPE_INT }, \
 	{ "tzname_max", CTLTYPE_INT }, \
 }
+
+
+/*
+ * CTL_MACHDEP definitions
+ */
+
+#define CURR_MANUMODE				1155
+#define IDPS					1156		/* 32 bytes IDPS*/
+#define OPENPSID_FOR_SYS  			1157   		/* 16 bytes PSID */
+#define OPENPSID          			1158		/* 16 bytes PSID */
+#define HWFEATURE_FOR_DECID    			1159		
+#define RCMGR_DEBUG_MENU        		1163		/* Debug Menu */
+#define RCMGR_DEBUG_MENU_MINI   		1164		/* Mini Debug Menu */
+#define RCMGR_INTDEV            		1160		
+#define RCMGR_PSM_INTDEV        		1161
+#define RCMGR_SL_DEBUGGER        		1162
+#define RCMGR_FLAGED_UPDATER    		1165
+#define RCMGR_FORCE_UPDATE      		1166		
+#define RCMGR_SPECIAL_I         		1167			
+#define RCMGR_FAKE_FINALIZE     		1168
+#define RCMGR_UTOKEN_STORE_MODE  		1169
+#define RCMGR_UTOKEN_DATA_EXECUTION             1170
+#define RCMGR_UTOKEN_WEAKENED_PORT_RESTRICTION  1171
+#define RCMGR_UTOKEN_FLAGED_UPDATER             1172
+#define RCMGR_UTOKEN_NP_ENV_SWITCHING           1173
+#define RCMGR_UTOKEN_SAVE_DATA_REPAIR           1174
+#define RCMGR_UTOKEN_USE_SOFTWAGNER             1175
+#define RCMGR_UTOKEN_NOTBEFORE                  1176
+#define RCMGR_UTOKEN_NOTAFTER                   1177
+#define TSC_FREQ                                1226
+
+/* TODO ..
+#define CTL_MACHDEP {\
+	{ 0, 0 },\
+	{curr_manumode, "CTLTYPE_BOOL"},\
+
+
+*/
+
+/*
+ * CTL_P1003 definitions
+ */
 
 #define CTL_P1003_1B_ASYNCHRONOUS_IO		1	/* boolean */
 #define CTL_P1003_1B_MAPPED_FILES		2	/* boolean */
